@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Room - RetakeTech</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-title">[War Room]</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="war-room.html" class="nav-link active">War Room</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">News</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Here's where principles become pull requests.</h1>
+            <p class="hero-text">Scan the board: Top 20 Captured projects that need help and Top 20 Liberated projects to amplify.</p>
+            <p class="hero-text">Review the neutrality criteria, pick a captured repo, and hit Submit Issue to restore merit-first, politics-free collaboration—by constructive, lawful means, open to builders across the political spectrum.</p>
+        </div>
+    </section>
+
+    <!-- Captured Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>The Top 20 Captured Open-Source Projects</h2>
+            <p class="section-subtitle">Projects flagged by our neutrality criteria; choose one and submit an issue requesting a return to politics-neutral norms.</p>
+            
+            <div class="table-container">
+                <table class="projects-table" id="capturedTable">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>No COC?</th>
+                            <th>Master Branch?</th>
+                            <th>Neutral Messaging?</th>
+                            <th>Activism</th>
+                        </tr>
+                    </thead>
+                    <tbody id="capturedTableBody">
+                        <tr class="loading-row">
+                            <td colspan="5">Loading captured projects...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liberated Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>The Top 20 Liberated Open-Source Projects</h2>
+            <p class="section-subtitle">Exemplars meeting the neutrality criteria today—star them, use them, and contribute.</p>
+            
+            <div class="table-container">
+                <table class="projects-table" id="liberatedTable">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>No COC?</th>
+                            <th>Master Branch?</th>
+                            <th>Neutral Messaging?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liberatedTableBody">
+                        <tr class="loading-row">
+                            <td colspan="4">Loading liberated projects...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology-section">
+        <div class="container">
+            <h2>Methodology</h2>
+            <p class="methodology-subtitle">Transparent, reproducible, and narrowly focused on project neutrality.</p>
+            
+            <div class="table-container">
+                <table class="methodology-table">
+                    <thead>
+                        <tr>
+                            <th>Facet</th>
+                            <th>Neutral Criteria</th>
+                            <th>Rationale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Code of Conduct</td>
+                            <td>None at repo/org level.</td>
+                            <td>Avoids ideological enforcement and off-platform policing; keeps moderation about on-project professionalism.</td>
+                        </tr>
+                        <tr>
+                            <td>Default Branch</td>
+                            <td>master as the default</td>
+                            <td>Branch name changes are often political pressure rather than technical need; 'master' signals continuity and neutrality.</td>
+                        </tr>
+                        <tr>
+                            <td>Messaging</td>
+                            <td>Neutral repo/org messaging</td>
+                            <td>Political symbols, slogans, or cause banners in README, pinned issues, or descriptions are divisive and off-scope for technical work.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright 2025 <a href="#" class="footer-link">RetakeTech.Com</a> - All Rights Reserved.</p>
+            <p>Designed and built by <a href="#" class="footer-link">Ziverge.com</a> for RetakeTech.Com.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/war-room.js"></script>
+</body>
+</html>

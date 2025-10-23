@@ -1,0 +1,182 @@
+[
+  {
+    "title": "Larry Garfield/Drupal (2017)",
+    "description": "Larry Garfield, a major Drupal contributor, was removed from the project in 2017 after his private lifestyle and gender role views became public. Critics argued this prioritized social norms over technical merit, as Garfield had been a valuable contributor for years.",
+    "source": "https://example.com/larry-garfield-drupal"
+  },
+  {
+    "title": "OpalGate (2015)",
+    "description": "Activist Coraline Ada Ehmke led efforts to remove a maintainer from the Opal project due to Twitter posts opposing hormone therapy for children. This raised concerns about Code of Conduct policies being used to enforce specific political viewpoints rather than professional behavior.",
+    "source": "https://example.com/opalgate"
+  },
+  {
+    "title": "Linux Kernel CoC (2018)",
+    "description": "The Linux kernel adopted a Code of Conduct in 2018, leading to concerns about political enforcement. Incidents like the 2024 restriction of Kent Overstreet and the 2021 ban of UMN researchers raised questions about whether technical merit was being overshadowed by political considerations.",
+    "source": "https://example.com/linux-kernel-coc"
+  },
+  {
+    "title": "Russian Developer Removal (2024)",
+    "description": "Russian developers were removed from Linux maintainer roles in 2024 due to U.S. sanctions, raising questions about whether geopolitics should override merit-based collaboration in open source projects.",
+    "source": "https://example.com/russian-developer-removal"
+  },
+  {
+    "title": "NixOS Moderation Crisis (2025)",
+    "description": "The NixOS moderation team resigned in 2025, protesting the steering committee's use of the Code of Conduct to target contributors based on political views and demands to remove elected officials.",
+    "source": "https://example.com/nixos-moderation-crisis"
+  },
+  {
+    "title": "openSUSE Bans (2024-2025)",
+    "description": "openSUSE permanently banned past board members and candidates with conservative political views in 2024-2025. Critics argued the Code of Conduct enforced ideological conformity and caused election delays due to candidate shortages.",
+    "source": "https://example.com/opensuse-bans"
+  },
+  {
+    "title": "GNOME Foundation Secret Removal (2024)",
+    "description": "The GNOME Foundation removed elected board member Sonny Piers for an alleged Code of Conduct violation in 2024, keeping the removal hidden for months. This raised concerns about transparency and accountability in governance.",
+    "source": "https://example.com/gnome-foundation-removal"
+  },
+  {
+    "title": "Fedora Antisemitism (2025)",
+    "description": "Fedora's Code of Conduct enforcement took action against users who highlighted antisemitic behavior while tolerating the original antisemitic content. Critics viewed this as inconsistent application of standards.",
+    "source": "https://example.com/fedora-antisemitism"
+  },
+  {
+    "title": "Portland Meetup Microaggression (2019)",
+    "description": "A speaker was flagged for a Code of Conduct violation at a Portland meetup for suggesting contributions to open-source projects, which was deemed a microaggression. This raised questions about CoC enforcement extending beyond harassment into technical discourse.",
+    "source": "https://example.com/portland-meetup"
+  },
+  {
+    "title": "Master/Main Branch Controversy (2020)",
+    "description": "GitHub's push to rename 'master' branches to 'main' in 2020 saw projects resisting face pressure and contributor loss. Many saw this as imposing political symbolism on technical terminology rather than addressing actual technical needs.",
+    "source": "https://example.com/master-main-branch"
+  },
+  {
+    "title": "Contributor Covenant Concerns",
+    "description": "Critics describe the Contributor Covenant Code of Conduct as a tool for introducing activist priorities into open-source projects, with allegations of its use to remove maintainers with differing political views.",
+    "source": "https://example.com/contributor-covenant"
+  },
+  {
+    "title": "Coraline Ada Ehmke at GitHub (2017)",
+    "description": "The primary advocate for widespread Code of Conduct adoption in open source was reportedly fired from GitHub in 2017 amid controversy over CoC implementation and enforcement practices.",
+    "source": "https://example.com/coraline-github"
+  },
+  {
+    "title": "Rust Mod Team Resignation (2021)",
+    "description": "Rust's moderation team resigned in 2021 due to inability to enforce the Code of Conduct against core team members, raising concerns about unequal application of community standards.",
+    "source": "https://example.com/rust-mod-resignation"
+  },
+  {
+    "title": "RubyGems Governance Dispute (2025)",
+    "description": "RubyGems maintainers accused Ruby Central of a hostile takeover using governance as justification in 2025, illustrating how organizational changes can override maintainer autonomy.",
+    "source": "https://example.com/rubygems-governance"
+  },
+  {
+    "title": "Arch Linux CoC Non-Enforcement",
+    "description": "Arch Linux's Code of Conduct is reportedly not consistently enforced, with regular violations by established members going unaddressed, suggesting it acts as a tool for selective enforcement rather than universal standards.",
+    "source": "https://example.com/arch-linux-coc"
+  },
+  {
+    "title": "Meetup List CoC Demands",
+    "description": "A meetup mailing list received demands for a social justice-oriented Code of Conduct from people who didn't regularly attend, raising questions about external pressure to politicize technical communities.",
+    "source": "https://example.com/meetup-coc-demands"
+  },
+  {
+    "title": "Python Tim Peters Thread Closure",
+    "description": "Python discussion forums closed a thread involving Tim Peters during a technical debate about tool removal, raising concerns about limiting technical discourse.",
+    "source": "https://example.com/python-tim-peters"
+  },
+  {
+    "title": "KDE Forum Thread Closure",
+    "description": "KDE forums removed ksysguard and Code of Conduct enforcement limited feedback, raising concerns about restricting technical discussion and community input.",
+    "source": "https://example.com/kde-forum-closure"
+  },
+  {
+    "title": "FreeDesktop CoC Scope Expansion",
+    "description": "A FreeDesktop Code of Conduct administrator advocated for banning contributors based on personal social media views, expanding CoC scope beyond project-related behavior.",
+    "source": "https://example.com/freedesktop-coc"
+  },
+  {
+    "title": "Ruby Community Guidelines Change (2021)",
+    "description": "Ruby community guidelines were changed in 2021, removing a provision requiring 'tolerance of opposing views,' raising concerns about ideological conformity.",
+    "source": "https://example.com/ruby-guidelines"
+  },
+  {
+    "title": "OSI Bans Co-Founder (2020)",
+    "description": "The Open Source Initiative banned co-founder Eric S. Raymond in 2020 for 'repeatedly violating the Code of Conduct,' raising questions about governance and free speech in open source.",
+    "source": "https://example.com/osi-bans-raymond"
+  },
+  {
+    "title": "Asahi Linux Participation Requirements (2023)",
+    "description": "Asahi Linux implemented policies in 2023 requiring active support for transgender causes, potentially excluding apolitical contributors from participation.",
+    "source": "https://example.com/asahi-linux-requirements"
+  },
+  {
+    "title": "elementary OS Participation Requirements (2023)",
+    "description": "elementary OS implemented similar policies in 2023 requiring active support for social causes, raising concerns about political litmus tests for technical participation.",
+    "source": "https://example.com/elementary-os-requirements"
+  },
+  {
+    "title": "Hyprland Developer Ban (2024)",
+    "description": "A Hyprland developer was banned in 2024 over a two-year-old incident involving pronoun changes on a chat server, raising questions about retroactive enforcement and proportionality.",
+    "source": "https://example.com/hyprland-developer-ban"
+  },
+  {
+    "title": "Godot Engine Banning Controversy (2024)",
+    "description": "The Godot Engine project banned numerous users in 2024, including a financial supporter, raising concerns about community management and contributor relations.",
+    "source": "https://example.com/godot-banning"
+  },
+  {
+    "title": "SQL Workbench Political Exclusion (2025)",
+    "description": "SQL Workbench's maintainer announced that supporters of the Republican Party and various European conservative parties are 'NOT WELCOME to use [his] software,' introducing an explicit political test for software usage.",
+    "source": "https://example.com/sql-workbench-exclusion"
+  },
+  {
+    "title": "Jon Pretty Libel Case (2021-2024)",
+    "description": "Jon Pretty was banned from all Scala community venues after accusations of sexual misconduct at conferences. He successfully sued for libel in 2024, with defendants admitting they had no evidence and paying damages - but only after years of professional exclusion.",
+    "source": "https://example.com/jon-pretty-libel"
+  },
+  {
+    "title": "Node.js Rod Vagg Controversy (2017)",
+    "description": "Node.js TSC member Rod Vagg faced Code of Conduct complaints for tweeting a link to an article questioning codes of conduct. The TSC voted 60-40 against his removal, but four members resigned and forked the project in protest.",
+    "source": "https://example.com/nodejs-rod-vagg"
+  },
+  {
+    "title": "Curtis Yarvin Strange Loop Ban (2015)",
+    "description": "Strange Loop 2015 rescinded Curtis Yarvin's accepted technical talk after complaints about his controversial political writings, with organizers stating his 'mere inclusion and/or presence would overshadow the content of his talk.'",
+    "source": "https://example.com/yarvin-strange-loop"
+  },
+  {
+    "title": "Curtis Yarvin LambdaConf (2016)",
+    "description": "When LambdaConf 2016 maintained Curtis Yarvin as a speaker, five speakers withdrew, multiple sponsors dropped out, and the Typelevel Summit sub-conference cancelled, demonstrating the pressure faced by events that don't exclude based on political views.",
+    "source": "https://example.com/yarvin-lambdaconf"
+  },
+  {
+    "title": "Donglegate PyCon (2013)",
+    "description": "Adria Richards publicly tweeted photos of two developers making private dongle jokes rather than using conference reporting channels. One developer was fired by his employer; Richards was subsequently fired by her employer after public backlash.",
+    "source": "https://example.com/donglegate-pycon"
+  },
+  {
+    "title": "DHH RailsConf Exclusion (2022)",
+    "description": "Rails creator David Heinemeier Hansson was not invited to keynote RailsConf 2022 despite his major work on Rails 7. He interpreted this as connected to his outspoken political views and lack of social media engagement on approved topics.",
+    "source": "https://example.com/dhh-railsconf"
+  },
+  {
+    "title": "BritRuby Cancellation (2012)",
+    "description": "BritRuby 2012 was cancelled entirely after controversy over its all-white-male speaker lineup, with organizers stating the diversity debate 'fundamentally destroyed any chance' of successfully holding the conference.",
+    "source": "https://example.com/britruby-cancellation"
+  },
+  {
+    "title": "GitHub Universe ICE Contract Protest (2019)",
+    "description": "Multiple GitHub Universe 2019 speakers withdrew and five employees resigned over GitHub's $200,000 ICE contract renewal, despite CEO Nat Friedman's defense of the contract as standard government business.",
+    "source": "https://example.com/github-ice-protest"
+  },
+  {
+    "title": "FreeBSD CoC Revision (2018-2020)",
+    "description": "FreeBSD's 2018 Code of Conduct based on Geek Feminism Wiki sparked backlash over provisions like prohibiting 'simulated physical contact' such as textual hugs, with only 30% community satisfaction, leading to adoption of a different CoC in 2020.",
+    "source": "https://example.com/freebsd-coc-revision"
+  },
+  {
+    "title": "LLVM Rafael Espindola Resignation (2018)",
+    "description": "LLVM contributor Rafael Avila de Espindola, with 4,300+ commits since 2006, resigned in 2018 stating that 'social injustice movement has permeated' the community after opposing the new CoC and Outreachy diversity program.",
+    "source": "https://example.com/llvm-espindola-resignation"
+  }
+]
