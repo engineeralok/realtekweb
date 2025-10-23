@@ -88,13 +88,8 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
     background-image: 
-        url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
-        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-blend-mode: overlay;
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,28 +97,6 @@ body {
     padding: 100px 20px 50px;
     position: relative;
     overflow: hidden;
-    animation: heroBackground 20s ease-in-out infinite;
-}
-
-@keyframes heroBackground {
-    0%, 100% {
-        background-image: 
-            url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
-            radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
-            radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
-    }
-    33% {
-        background-image: 
-            url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
-            radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
-            radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
-    }
-    66% {
-        background-image: 
-            url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
-            radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
-            radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
-    }
 }
 
 .hero::before {
