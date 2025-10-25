@@ -20,7 +20,8 @@ const progressMessages = [
 // Load news data from API
 async function loadNews() {
     try {
-        newsData = await window.RetakeTech.apiFetch(window.RetakeTech.API_CONFIG.endpoints.news);
+        const response = await window.RetakeTech.apiFetch(`${window.RetakeTech.API_CONFIG.endpoints.news}?days=7`);
+        newsData = response.items || [];
         
         // Sort by date descending
         newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -47,9 +48,9 @@ function displayNews() {
     
     tbody.innerHTML = recentNews.map(item => `
         <tr>
-            <td><strong>${item.project}</strong></td>
-            <td>${item.oldStatus} ${window.RetakeTech.getStatusEmoji(item.oldStatus)}</td>
-            <td>${item.newStatus} ${window.RetakeTech.getStatusEmoji(item.newStatus)}</td>
+            <td><strong>${item.slug}</strong></td>
+            <td>${item.currentOrientation || 'Unknown'} ${window.RetakeTech.getStatusEmoji(item.currentOrientation)}</td>
+            <td>${item.isPolitical ? 'Political' : 'Neutral'} ${window.RetakeTech.getStatusEmoji(item.isPolitical ? 'captured' : 'liberated')}</td>
             <td>${window.RetakeTech.formatDate(item.date)}</td>
         </tr>
     `).join('');

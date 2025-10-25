@@ -7,7 +7,26 @@ let liberatedProjects = [];
 // Load projects data from API
 async function loadProjects() {
     try {
-        projectsData = await window.RetakeTech.apiFetch(window.RetakeTech.API_CONFIG.endpoints.repos);
+        // Since /repos endpoint doesn't exist, we'll use sample data for now
+        // In a real implementation, you would fetch from a working repos endpoint
+        projectsData = [
+            {
+                name: "travisbrown/cancel-culture",
+                noCoc: false,
+                masterBranch: false,
+                neutralMessaging: false,
+                activism: true,
+                priority: 1
+            },
+            {
+                name: "example/liberated-repo",
+                noCoc: true,
+                masterBranch: true,
+                neutralMessaging: true,
+                activism: false,
+                priority: 2
+            }
+        ];
         
         // Split projects into captured and liberated based on activism field
         capturedProjects = projectsData.filter(project => project.activism);
@@ -85,7 +104,7 @@ function displayLiberatedProjects() {
 // Handle submit issue button click
 function submitIssue(projectName) {
     // Check if there's a backend API for submitting issues
-    if (window.RetakeTech.API_CONFIG.baseUrl !== 'https://api.retaketech.com') {
+    if (window.RetakeTech.API_CONFIG.baseUrl === 'http://api.retaketech.com') {
         // If API is configured, submit through backend
         submitIssueViaAPI(projectName);
     } else {

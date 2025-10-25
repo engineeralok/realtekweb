@@ -2,10 +2,11 @@
 
 // API Configuration
 const API_CONFIG = {
-    baseUrl: 'https://api.retaketech.com', // Placeholder - update with actual API URL
+    baseUrl: 'https://api.retaketech.com',
     endpoints: {
         repos: '/repos',
-        news: '/news'
+        news: '/news',
+        score: '/score'
     }
 };
 

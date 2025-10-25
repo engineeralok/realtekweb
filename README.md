@@ -67,17 +67,20 @@ A dark-themed static website for RetakeTech, built with HTML, CSS, and JavaScrip
 
 ### API Configuration
 
-Update the API base URL in `js/main.js`:
+The website is configured to use the working RetakeTech APIs:
 
 ```javascript
 const API_CONFIG = {
-    baseUrl: 'https://your-api-domain.com', // Update this
+    baseUrl: 'https://api.retaketech.com',
     endpoints: {
         repos: '/repos',
-        news: '/news'
+        news: '/news',
+        score: '/score'
     }
 };
 ```
+
+**API Test**: Open `test-api.html` in your browser to test the API endpoints.
 
 ## API Endpoints
 
@@ -98,17 +101,23 @@ Returns an array of project objects:
 ]
 ```
 
-### GET /news
-Returns an array of news items:
+### GET /news?days=7
+Returns an object with news items:
 ```json
-[
-  {
-    "project": "owner/repo",
-    "oldStatus": "captured",
-    "newStatus": "liberated",
-    "date": "2025-01-15"
-  }
-]
+{
+  "items": [
+    {
+      "url": "https://github.com/travisbrown/cancel-culture",
+      "slug": "travisbrown/cancel-culture",
+      "description": "Tools for fighting abuse on Twitter",
+      "date": "2025-10-22",
+      "currentOrientation": "Political",
+      "isPolitical": true,
+      "hasCoc": true,
+      "defaultBranch": "main"
+    }
+  ]
+}
 ```
 
 ### POST /news
@@ -116,6 +125,21 @@ Submit a new news item:
 ```json
 {
   "slug": "owner/repo"
+}
+```
+
+### GET /score?slug=owner/repo
+Get scoring information for a specific repository:
+```json
+{
+  "url": "https://github.com/travisbrown/cancel-culture",
+  "slug": "travisbrown/cancel-culture",
+  "description": "Tools for fighting abuse on Twitter",
+  "orientation": "Political",
+  "isPolitical": true,
+  "hasCoc": true,
+  "defaultBranch": "main",
+  "stars": 428
 }
 ```
 

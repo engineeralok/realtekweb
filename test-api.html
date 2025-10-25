@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - RetakeTech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .success {
+            color: #00ff00;
+        }
+        .error {
+            color: #ff4444;
+        }
+        button {
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #00b8e6;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>RetakeTech API Test</h1>
+    
+    <div class="test-section">
+        <h2>API Endpoints Test</h2>
+        <button onclick="testNewsAPI()">Test News API</button>
+        <button onclick="testReposAPI()">Test Repos API</button>
+        <button onclick="testScoreAPI()">Test Score API</button>
+        <button onclick="testAllAPIs()">Test All APIs</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://api.retaketech.com';
+        
+        async function testAPI(endpoint, method = 'GET', body = null) {
+            const url = `${API_BASE}${endpoint}`;
+            const options = {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            };
+            
+            if (body) {
+                options.body = JSON.stringify(body);
+            }
+            
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                return {
+                    success: true,
+                    status: response.status,
+                    data: data
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        }
+        
+        function displayResult(title, result) {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.innerHTML = `
+                <h3>${title}</h3>
+                <div class="${result.success ? 'success' : 'error'}">
+                    ${result.success ? 'SUCCESS' : 'ERROR'}
+                </div>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            `;
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        async function testNewsAPI() {
+            const result = await testAPI('/news?days=7');
+            displayResult('News API Test', result);
+        }
+        
+        async function testReposAPI() {
+            const result = await testAPI('/repos');
+            displayResult('Repos API Test', result);
+        }
+        
+        async function testScoreAPI() {
+            const result = await testAPI('/score?slug=test/repo');
+            displayResult('Score API Test', result);
+        }
+        
+        async function testAllAPIs() {
+            document.getElementById('results').innerHTML = '';
+            
+            await testNewsAPI();
+            await testReposAPI();
+            await testScoreAPI();
+        }
+    </script>
+</body>
+</html>
