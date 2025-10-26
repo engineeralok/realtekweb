@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Test - RetakeTech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00d4ff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10000;
+        }
+        
+        .breakpoint-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 212, 255, 0.9);
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 10000;
+        }
+        
+        @media (max-width: 767px) {
+            .breakpoint-indicator::after {
+                content: "MOBILE";
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .breakpoint-indicator::after {
+                content: "TABLET";
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .breakpoint-indicator::after {
+                content: "DESKTOP";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <strong>Responsive Test Page</strong><br>
+        Resize your browser window to test different breakpoints
+    </div>
+    
+    <div class="breakpoint-indicator"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/retake-logo/logo-horizontal-transparent.png" alt="RetakeTech" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="war-room.html" class="nav-link">War Room</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">News</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero home-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Code first. Stay professional. Leave politics at the door.</h1>
+                <p>Open source thrives when code quality—not creed—sets the bar. Join us in restoring merit-driven development.</p>
+                <div class="hero-buttons">
+                    <a href="news.html" class="btn btn-primary">See Latest News</a>
+                    <a href="war-room.html" class="btn btn-secondary">Enter War Room</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="examples-section">
+        <div class="container">
+            <h2>The High Cost of Politicizing Open Source</h2>
+            <p>Codes of Conduct that prioritize ideology over technical merit are dividing our community.</p>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>Example 1</h3>
+                    <p>This is a sample example card to test responsive grid layout. The content should adapt to different screen sizes.</p>
+                    <a href="#" class="example-source">Source</a>
+                </div>
+                <div class="example-card">
+                    <h3>Example 2</h3>
+                    <p>Another example card to demonstrate how the grid responds to different viewport widths and device orientations.</p>
+                    <a href="#" class="example-source">Source</a>
+                </div>
+                <div class="example-card">
+                    <h3>Example 3</h3>
+                    <p>Third example card showing the responsive behavior across mobile, tablet, and desktop breakpoints.</p>
+                    <a href="#" class="example-source">Source</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>Responsive Table Test</h2>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>test/project1</strong></td>
+                            <td>✓</td>
+                            <td>Political</td>
+                            <td>2025-01-01</td>
+                            <td><button class="submit-issue-btn">Submit Issue</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>test/project2</strong></td>
+                            <td>✗</td>
+                            <td>Neutral</td>
+                            <td>2025-01-02</td>
+                            <td><button class="submit-issue-btn">Submit Issue</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="submit-section">
+        <div class="container">
+            <h2>Responsive Form Test</h2>
+            <form class="submit-form">
+                <div class="form-group">
+                    <label for="testInput">Test Input Field</label>
+                    <input type="text" id="testInput" placeholder="Enter test data">
+                </div>
+                <button type="submit" class="btn btn-primary">Test Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/retake-logo/logo-square-transparent.png" alt="RetakeTech" class="footer-logo-img">
+                </div>
+                <div class="footer-text">
+                    <p>Copyright 2025 <a href="#" class="footer-link">RetakeTech.Com</a> - All Rights Reserved.</p>
+                    <p>Designed and built by <a href="#" class="footer-link">Ziverge.com</a> for RetakeTech.Com.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

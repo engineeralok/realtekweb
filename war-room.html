@@ -153,26 +153,5 @@
 
     <script src="js/main.js"></script>
     <script src="js/war-room.js"></script>
-    
-    <!-- Test button for debugging -->
-    <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
-        <button onclick="testSubmitIssueFunction()" style="background: #ff4444; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer;">
-            Test Submit Issue
-        </button>
-    </div>
-    
-    <script>
-        function testSubmitIssueFunction() {
-            console.log('Test button clicked');
-            console.log('submitIssue function available:', typeof window.submitIssue);
-            console.log('API_CONFIG available:', !!window.RetakeTech?.API_CONFIG);
-            
-            if (typeof window.submitIssue === 'function') {
-                window.submitIssue('test/repo');
-            } else {
-                alert('submitIssue function not available');
-            }
-        }
-    </script>
 </body>
 </html>

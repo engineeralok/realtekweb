@@ -13,7 +13,6 @@ async function loadProjects() {
         }
         
         const apiUrl = `${window.RetakeTech.API_CONFIG.staticBaseUrl}${window.RetakeTech.API_CONFIG.endpoints.repos}`;
-        console.log('Fetching from:', apiUrl);
         
         // Fetch from static repos API
         const response = await fetch(apiUrl, {
@@ -24,14 +23,11 @@ async function loadProjects() {
             }
         });
         
-        console.log('Response status:', response.status);
-        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
         }
         
         const data = await response.json();
-        console.log('API Response data:', data);
         
         // Validate response structure
         if (!data || typeof data !== 'object') {
@@ -41,9 +37,6 @@ async function loadProjects() {
         // Extract political and neutral arrays from the response
         capturedProjects = Array.isArray(data.political) ? data.political : [];
         liberatedProjects = Array.isArray(data.neutral) ? data.neutral : [];
-        
-        console.log('Captured projects count:', capturedProjects.length);
-        console.log('Liberated projects count:', liberatedProjects.length);
         
         // Sort by stars (descending) to get top 20
         capturedProjects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
@@ -57,20 +50,30 @@ async function loadProjects() {
         displayLiberatedProjects();
     } catch (error) {
         console.error('Error loading projects:', error);
+        console.error('Error details:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+        });
         
-        // Try to load fallback data if API fails
-        try {
+        // Check if it's a CORS error
+        if (error.message.includes('CORS') || error.message.includes('cross-origin') || error.message.includes('blocked')) {
+            console.log('CORS error detected, loading fallback data...');
             loadFallbackData();
-        } catch (fallbackError) {
-            console.error('Fallback data also failed:', fallbackError);
-            showProjectsError(error);
+        } else {
+            // Try to load fallback data if API fails
+            try {
+                loadFallbackData();
+            } catch (fallbackError) {
+                console.error('Fallback data also failed:', fallbackError);
+                showProjectsError(error);
+            }
         }
     }
 }
 
 // Fallback data when API fails
 function loadFallbackData() {
-    console.log('Loading fallback data...');
     
     // Sample data structure matching the API format
     const fallbackData = {
@@ -139,7 +142,7 @@ function loadFallbackData() {
     displayLiberatedProjects();
     
     // Show info toast
-    showToast('Using fallback data - API connection failed', 'info');
+    showToast('Using fallback data - CORS policy prevents direct API access from browser', 'info');
 }
 
 // Display captured projects in table
@@ -211,7 +214,6 @@ function submitIssue(projectSlug) {
         
         // Since activism API returns 404, use direct GitHub link as fallback
         const githubUrl = `https://github.com/${projectSlug}/issues/new`;
-        console.log('Opening GitHub issues URL:', githubUrl);
         
         // Open in new tab
         const newWindow = window.open(githubUrl, '_blank');
@@ -224,7 +226,6 @@ function submitIssue(projectSlug) {
         
         // Optional: Try activism API in background (for future when it works)
         // const activismUrl = `${window.RetakeTech.API_CONFIG.baseUrl}${window.RetakeTech.API_CONFIG.endpoints.activism}?slug=${projectSlug}`;
-        // console.log('Activism API URL (for future):', activismUrl);
         
     } catch (error) {
         console.error('Error submitting issue:', error);
@@ -234,9 +235,6 @@ function submitIssue(projectSlug) {
 
 // Make submitIssue globally accessible
 window.submitIssue = submitIssue;
-
-// Debug: Log that the function is available
-console.log('submitIssue function loaded and available globally:', typeof window.submitIssue);
 
 
 // Show error message for projects

@@ -2,11 +2,15 @@
 
 // API Configuration
 const API_CONFIG = {
-    baseUrl: 'https://api.retaketech.com',
-    staticBaseUrl: 'https://static.retaketech.com',
+    baseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:3001/api' 
+        : 'https://api.retaketech.com',
+    staticBaseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:3001/api'
+        : 'https://static.retaketech.com',
     endpoints: {
-        news: '/news/',
-        repos: '/repos.json',
+        news: '/news',
+        repos: '/repos',
         activism: '/activism/github_issue',
         score: '/score'
     }
@@ -117,6 +121,36 @@ function getStatusEmoji(status) {
         'neutral': '✅'
     };
     return emojis[status] || '';
+}
+
+// Mobile menu functionality
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
 }
 
 // Initialize common functionality
