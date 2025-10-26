@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Proxy Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a1a; color: #ffffff; padding: 20px; }
+        .test-section { background: #2a2a2a; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .success { color: #00ff00; }
+        .error { color: #ff4444; }
+        pre { background: #333; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>CORS Proxy Test</h1>
+    <p>Testing the CORS proxy solution for pure HTML/CSS/JS website.</p>
+
+    <div class="test-section">
+        <h2>Repos API Test</h2>
+        <button onclick="testReposAPI()">Test Repos API</button>
+        <div id="reposResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>News API Test</h2>
+        <button onclick="testNewsAPI()">Test News API</button>
+        <div id="newsResult"></div>
+    </div>
+
+    <script>
+        async function testReposAPI() {
+            const resultDiv = document.getElementById('reposResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const corsProxy = 'https://api.allorigins.win/raw?url=';
+                const apiUrl = `${corsProxy}${encodeURIComponent('https://static.retaketech.com/repos.json')}`;
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <p class="success">✅ SUCCESS: Repos API working</p>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ ERROR: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testNewsAPI() {
+            const resultDiv = document.getElementById('newsResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const corsProxy = 'https://api.allorigins.win/raw?url=';
+                const apiUrl = `${corsProxy}${encodeURIComponent('https://api.retaketech.com/news/?days=7')}`;
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <p class="success">✅ SUCCESS: News API working</p>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ ERROR: ${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

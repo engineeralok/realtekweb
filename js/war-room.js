@@ -12,9 +12,11 @@ async function loadProjects() {
             throw new Error('API configuration not loaded');
         }
         
-        const apiUrl = `${window.RetakeTech.API_CONFIG.staticBaseUrl}${window.RetakeTech.API_CONFIG.endpoints.repos}`;
-        
-        // Fetch from static repos API
+        // Use CORS proxy for static repos API
+        const corsProxy = 'https://api.allorigins.win/raw?url=';
+        const apiUrl = `${corsProxy}${encodeURIComponent('https://static.retaketech.com/repos.json')}`;
+
+        // Fetch from static repos API via CORS proxy
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {

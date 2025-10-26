@@ -67,29 +67,30 @@ A dark-themed static website for RetakeTech, built with HTML, CSS, and JavaScrip
 
 ### API Configuration
 
-The website uses Netlify Functions to proxy API requests and avoid CORS issues:
+The website uses a CORS proxy service to access external APIs from the browser:
 
 ```javascript
 const API_CONFIG = {
-    baseUrl: '/.netlify/functions',
-    staticBaseUrl: '/.netlify/functions',
+    baseUrl: 'https://api.retaketech.com',
+    staticBaseUrl: 'https://static.retaketech.com',
     endpoints: {
-        news: '/fetch-news',
-        repos: '/fetch-repos',
-        activism: '/fetch-activism',
-        score: '/fetch-score'
+        news: '/news/',
+        repos: '/repos.json',
+        activism: '/activism/github_issue',
+        score: '/score'
     }
 };
 ```
+
+**CORS Proxy**: Uses `https://api.allorigins.win/raw?url=` to bypass CORS restrictions.
 
 **API Test**: Open `test-api.html` in your browser to test the API endpoints.
 
 ## API Endpoints
 
-The website uses Netlify Functions that proxy to the following external APIs:
+The website accesses the following external APIs through a CORS proxy:
 
-### GET /.netlify/functions/fetch-repos
-Proxies to `https://static.retaketech.com/repos.json`
+### GET https://static.retaketech.com/repos.json
 Returns project data:
 ```json
 {
@@ -122,8 +123,7 @@ Returns project data:
 }
 ```
 
-### GET /.netlify/functions/fetch-news?days=7
-Proxies to `https://api.retaketech.com/news/?days=7`
+### GET https://api.retaketech.com/news/?days=7
 Returns news data:
 ```json
 {

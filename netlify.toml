@@ -1,7 +1,6 @@
 [build]
   publish = "."
   command = "echo 'Static site - no build required'"
-  functions = "netlify/functions"
 
 [[redirects]]
   from = "/war-room"

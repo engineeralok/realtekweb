@@ -4,15 +4,15 @@
 const API_CONFIG = {
     baseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
         ? 'http://localhost:3001/api' 
-        : '/.netlify/functions',
+        : 'https://api.retaketech.com',
     staticBaseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:3001/api'
-        : '/.netlify/functions',
+        : 'https://static.retaketech.com',
     endpoints: {
-        news: '/fetch-news',
-        repos: '/fetch-repos',
-        activism: '/fetch-activism',
-        score: '/fetch-score'
+        news: '/news/',
+        repos: '/repos.json',
+        activism: '/activism/github_issue',
+        score: '/score'
     }
 };
 

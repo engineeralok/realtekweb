@@ -20,12 +20,28 @@ const progressMessages = [
 // Load news data from API
 async function loadNews() {
     try {
-        const response = await window.RetakeTech.apiFetch(`${window.RetakeTech.API_CONFIG.endpoints.news}?days=7`);
-        newsData = response.items || [];
+        // Use CORS proxy for news API
+        const corsProxy = 'https://api.allorigins.win/raw?url=';
+        const apiUrl = `${corsProxy}${encodeURIComponent('https://api.retaketech.com/news/?days=7')}`;
         
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        newsData = data.items || [];
+
         // Sort by date descending
         newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
+
         displayNews();
     } catch (error) {
         console.error('Error loading news:', error);
@@ -177,9 +193,16 @@ async function submitNews(githubSlug) {
         // Wait for progress messages to complete (30 seconds)
         await new Promise(resolve => setTimeout(resolve, 30000));
         
-        // Submit to API
-        const response = await window.RetakeTech.apiFetch(window.RetakeTech.API_CONFIG.endpoints.news, {
+        // Submit to API via CORS proxy
+        const corsProxy = 'https://api.allorigins.win/raw?url=';
+        const apiUrl = `${corsProxy}${encodeURIComponent('https://api.retaketech.com/news/')}`;
+        
+        const response = await fetch(apiUrl, {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 slug: githubSlug
             })
