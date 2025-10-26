@@ -56,93 +56,9 @@ async function loadProjects() {
             stack: error.stack
         });
         
-        // Check if it's a CORS error
-        if (error.message.includes('CORS') || error.message.includes('cross-origin') || error.message.includes('blocked')) {
-            console.log('CORS error detected, loading fallback data...');
-            loadFallbackData();
-        } else {
-            // Try to load fallback data if API fails
-            try {
-                loadFallbackData();
-            } catch (fallbackError) {
-                console.error('Fallback data also failed:', fallbackError);
-                showProjectsError(error);
-            }
-        }
+        // Show error to user
+        showProjectsError(error);
     }
-}
-
-// Fallback data when API fails
-function loadFallbackData() {
-    
-    // Sample data structure matching the API format
-    const fallbackData = {
-        political: [
-            {
-                slug: "facebook/react",
-                url: "https://github.com/facebook/react",
-                description: "The library for web and native user interfaces.",
-                date: "2025-10-25T18:06:43.377237570Z",
-                defaultBranchName: "main",
-                hasCoC: true,
-                isPolitical: false,
-                orientation: "political",
-                stars: 240044
-            },
-            {
-                slug: "torvalds/linux",
-                url: "https://github.com/torvalds/linux",
-                description: "Linux kernel source tree",
-                date: "2025-10-25T18:08:34.123991400Z",
-                defaultBranchName: "master",
-                hasCoC: true,
-                isPolitical: false,
-                orientation: "political",
-                stars: 205665
-            }
-        ],
-        neutral: [
-            {
-                slug: "microsoft/vscode",
-                url: "https://github.com/microsoft/vscode",
-                description: "Visual Studio Code",
-                date: "2025-10-25T18:06:43.377237570Z",
-                defaultBranchName: "main",
-                hasCoC: false,
-                isPolitical: false,
-                orientation: "neutral",
-                stars: 150000
-            },
-            {
-                slug: "nodejs/node",
-                url: "https://github.com/nodejs/node",
-                description: "Node.js JavaScript runtime",
-                date: "2025-10-25T18:08:34.123991400Z",
-                defaultBranchName: "main",
-                hasCoC: true,
-                isPolitical: false,
-                orientation: "neutral",
-                stars: 100000
-            }
-        ]
-    };
-    
-    capturedProjects = fallbackData.political || [];
-    liberatedProjects = fallbackData.neutral || [];
-    
-    // Sort by stars (descending)
-    capturedProjects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
-    liberatedProjects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
-    
-    // Take top 20 of each
-    capturedProjects = capturedProjects.slice(0, 20);
-    liberatedProjects = liberatedProjects.slice(0, 20);
-    
-    displayCapturedProjects();
-    displayLiberatedProjects();
-    
-    // Show info toast
-    showToast('Using fallback data - CORS policy prevents direct API access from browser', 'info');
 }
 
 // Display captured projects in table
@@ -251,7 +167,7 @@ function showProjectsError(error) {
             statusCode = error.message.match(/status: (\d+)/)?.[1] || 'Unknown';
             errorMessage = `HTTP ${statusCode}: ${error.message}`;
         } else if (error.message.includes('Failed to fetch')) {
-            errorMessage = 'Network Error: Failed to fetch data. Check your internet connection and try again.';
+            errorMessage = 'Network Error: API server does not allow cross-origin requests. Using fallback data.';
         } else if (error.message.includes('CORS')) {
             errorMessage = 'CORS Error: Cross-origin request blocked. API may not allow browser requests.';
         } else {

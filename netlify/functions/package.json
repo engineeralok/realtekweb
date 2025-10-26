@@ -1,0 +1,9 @@
+{
+  "name": "retaketech-netlify-functions",
+  "version": "1.0.0",
+  "description": "Netlify functions for RetakeTech API proxy",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

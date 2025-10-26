@@ -67,17 +67,17 @@ A dark-themed static website for RetakeTech, built with HTML, CSS, and JavaScrip
 
 ### API Configuration
 
-The website is configured to use the working RetakeTech APIs:
+The website uses Netlify Functions to proxy API requests and avoid CORS issues:
 
 ```javascript
 const API_CONFIG = {
-    baseUrl: 'https://api.retaketech.com',
-    staticBaseUrl: 'https://static.retaketech.com',
+    baseUrl: '/.netlify/functions',
+    staticBaseUrl: '/.netlify/functions',
     endpoints: {
-        news: '/news/',
-        repos: '/repos.json',
-        activism: '/activism/github_issue',
-        score: '/score'
+        news: '/fetch-news',
+        repos: '/fetch-repos',
+        activism: '/fetch-activism',
+        score: '/fetch-score'
     }
 };
 ```
@@ -86,25 +86,45 @@ const API_CONFIG = {
 
 ## API Endpoints
 
-The website expects the following API endpoints:
+The website uses Netlify Functions that proxy to the following external APIs:
 
-### GET /repos
-Returns an array of project objects:
+### GET /.netlify/functions/fetch-repos
+Proxies to `https://static.retaketech.com/repos.json`
+Returns project data:
 ```json
-[
-  {
-    "name": "owner/repo",
-    "noCoc": true,
-    "masterBranch": false,
-    "neutralMessaging": true,
-    "activism": true,
-    "priority": 1
-  }
-]
+{
+  "political": [
+    {
+      "slug": "facebook/react",
+      "url": "https://github.com/facebook/react",
+      "description": "The library for web and native user interfaces.",
+      "date": "2025-10-25T18:06:43.377237570Z",
+      "defaultBranchName": "main",
+      "hasCoC": true,
+      "isPolitical": false,
+      "orientation": "political",
+      "stars": 240044
+    }
+  ],
+  "neutral": [
+    {
+      "slug": "microsoft/vscode",
+      "url": "https://github.com/microsoft/vscode",
+      "description": "Visual Studio Code",
+      "date": "2025-10-25T18:06:43.377237570Z",
+      "defaultBranchName": "main",
+      "hasCoC": false,
+      "isPolitical": false,
+      "orientation": "neutral",
+      "stars": 150000
+    }
+  ]
+}
 ```
 
-### GET /news?days=7
-Returns an object with news items:
+### GET /.netlify/functions/fetch-news?days=7
+Proxies to `https://api.retaketech.com/news/?days=7`
+Returns news data:
 ```json
 {
   "items": [

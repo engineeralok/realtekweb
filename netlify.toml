@@ -1,6 +1,7 @@
 [build]
   publish = "."
   command = "echo 'Static site - no build required'"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/war-room"
@@ -20,6 +21,7 @@
 # Environment variables for API configuration
 [build.environment]
   API_BASE_URL = "https://api.retaketech.com"
+  STATIC_BASE_URL = "https://static.retaketech.com"
 
 # Headers for security and performance
 [[headers]]
