@@ -52,6 +52,7 @@
         <h2>API Endpoints Test</h2>
         <button onclick="testNewsAPI()">Test News API</button>
         <button onclick="testReposAPI()">Test Repos API</button>
+        <button onclick="testActivismAPI()">Test Activism API</button>
         <button onclick="testScoreAPI()">Test Score API</button>
         <button onclick="testAllAPIs()">Test All APIs</button>
     </div>
@@ -63,9 +64,9 @@
 
     <script>
         const API_BASE = 'https://api.retaketech.com';
+        const STATIC_BASE = 'https://static.retaketech.com';
         
-        async function testAPI(endpoint, method = 'GET', body = null) {
-            const url = `${API_BASE}${endpoint}`;
+        async function testAPI(url, method = 'GET', body = null) {
             const options = {
                 method,
                 headers: {
@@ -107,17 +108,22 @@
         }
         
         async function testNewsAPI() {
-            const result = await testAPI('/news?days=7');
+            const result = await testAPI(`${API_BASE}/news/?days=7`);
             displayResult('News API Test', result);
         }
         
         async function testReposAPI() {
-            const result = await testAPI('/repos');
-            displayResult('Repos API Test', result);
+            const result = await testAPI(`${STATIC_BASE}/repos.json`);
+            displayResult('Repos API Test (Static)', result);
+        }
+        
+        async function testActivismAPI() {
+            const result = await testAPI(`${API_BASE}/activism/github_issue?slug=travisbrown/cancel-culture`);
+            displayResult('Activism API Test', result);
         }
         
         async function testScoreAPI() {
-            const result = await testAPI('/score?slug=test/repo');
+            const result = await testAPI(`${API_BASE}/score?slug=travisbrown/cancel-culture`);
             displayResult('Score API Test', result);
         }
         
@@ -126,6 +132,7 @@
             
             await testNewsAPI();
             await testReposAPI();
+            await testActivismAPI();
             await testScoreAPI();
         }
     </script>

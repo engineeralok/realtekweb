@@ -29,7 +29,7 @@ async function loadNews() {
         displayNews();
     } catch (error) {
         console.error('Error loading news:', error);
-        showNewsError();
+        showNewsError(error);
     }
 }
 
@@ -57,11 +57,80 @@ function displayNews() {
 }
 
 // Show error message for news
-function showNewsError() {
+function showNewsError(error) {
     const tbody = document.getElementById('newsTableBody');
-    if (tbody) {
-        tbody.innerHTML = '<tr><td colspan="4" style="color: #ff4444; text-align: center;">Failed to load news. Please try again later.</td></tr>';
+    
+    // Extract status code and message from error
+    let statusCode = 'Unknown';
+    let errorMessage = 'Failed to load news. Please try again later.';
+    
+    if (error.message) {
+        if (error.message.includes('status:')) {
+            statusCode = error.message.match(/status: (\d+)/)?.[1] || 'Unknown';
+            errorMessage = `HTTP ${statusCode}: ${error.message}`;
+        } else if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'Network Error: Failed to fetch data. Check your internet connection and try again.';
+        } else if (error.message.includes('CORS')) {
+            errorMessage = 'CORS Error: Cross-origin request blocked. API may not allow browser requests.';
+        } else {
+            errorMessage = `Error: ${error.message}`;
+        }
     }
+    
+    // Add error type if available
+    if (error.name) {
+        errorMessage = `${error.name}: ${errorMessage}`;
+    }
+    
+    // Show toast notification
+    showToast(`News API Error: ${errorMessage}`, 'error');
+    
+    if (tbody) {
+        tbody.innerHTML = `<tr><td colspan="4" style="color: #ff4444; text-align: center;">${errorMessage}</td></tr>`;
+    }
+}
+
+// Toast notification function
+function showToast(message, type = 'info') {
+    // Remove existing toast if any
+    const existingToast = document.getElementById('toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.style.cssText = `
+        position: fixed;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: ${type === 'error' ? '#ff4444' : '#00d4ff'};
+        color: ${type === 'error' ? '#ffffff' : '#000000'};
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        max-width: 600px;
+        width: 90%;
+        word-wrap: break-word;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        text-align: center;
+    `;
+    toast.textContent = message;
+    
+    // Add to page
+    document.body.appendChild(toast);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+    }, 5000);
 }
 
 // Handle form submission

@@ -72,9 +72,11 @@ The website is configured to use the working RetakeTech APIs:
 ```javascript
 const API_CONFIG = {
     baseUrl: 'https://api.retaketech.com',
+    staticBaseUrl: 'https://static.retaketech.com',
     endpoints: {
-        repos: '/repos',
-        news: '/news',
+        news: '/news/',
+        repos: '/repos.json',
+        activism: '/activism/github_issue',
         score: '/score'
     }
 };

@@ -3,9 +3,11 @@
 // API Configuration
 const API_CONFIG = {
     baseUrl: 'https://api.retaketech.com',
+    staticBaseUrl: 'https://static.retaketech.com',
     endpoints: {
-        repos: '/repos',
-        news: '/news',
+        news: '/news/',
+        repos: '/repos.json',
+        activism: '/activism/github_issue',
         score: '/score'
     }
 };
@@ -29,6 +31,17 @@ async function apiFetch(endpoint, options = {}) {
         return await response.json();
     } catch (error) {
         console.error('API fetch error:', error);
+        throw error;
+    }
+}
+
+// Score a repository using the scoring API
+async function scoreRepository(slug) {
+    try {
+        const response = await apiFetch(`${API_CONFIG.endpoints.score}?slug=${slug}`);
+        return response;
+    } catch (error) {
+        console.error('Error scoring repository:', error);
         throw error;
     }
 }
@@ -119,5 +132,6 @@ window.RetakeTech = {
     hideModal,
     formatDate,
     getStatusEmoji,
+    scoreRepository,
     API_CONFIG
 };

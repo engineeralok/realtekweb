@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Submit Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2a2a2a;
+        }
+        button {
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ffffff;
+        }
+        .success {
+            color: #00ff00;
+        }
+        .error {
+            color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Submit Issue Functionality</h1>
+    
+    <div class="test-section">
+        <h2>Test Submit Issue Buttons</h2>
+        <p>Click these buttons to test the submit issue functionality:</p>
+        
+        <button onclick="testSubmitIssue('facebook/react')">Test facebook/react</button>
+        <button onclick="testSubmitIssue('torvalds/linux')">Test torvalds/linux</button>
+        <button onclick="testSubmitIssue('microsoft/vscode')">Test microsoft/vscode</button>
+        
+        <div id="testResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Global Function Access</h2>
+        <button onclick="testGlobalFunction()">Test Global Function</button>
+        <div id="globalResult"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/war-room.js"></script>
+    
+    <script>
+        function testSubmitIssue(slug) {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = `<p>Testing submit issue for: ${slug}</p>`;
+            
+            try {
+                if (typeof window.submitIssue === 'function') {
+                    window.submitIssue(slug);
+                    resultDiv.innerHTML += `<p class="success">✅ Function called successfully for ${slug}</p>`;
+                } else {
+                    resultDiv.innerHTML += `<p class="error">❌ submitIssue function not found</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        function testGlobalFunction() {
+            const resultDiv = document.getElementById('globalResult');
+            
+            if (typeof window.submitIssue === 'function') {
+                resultDiv.innerHTML = `<p class="success">✅ submitIssue function is globally accessible</p>`;
+            } else {
+                resultDiv.innerHTML = `<p class="error">❌ submitIssue function is not globally accessible</p>`;
+            }
+            
+            if (window.RetakeTech && window.RetakeTech.API_CONFIG) {
+                resultDiv.innerHTML += `<p class="success">✅ API_CONFIG is available</p>`;
+            } else {
+                resultDiv.innerHTML += `<p class="error">❌ API_CONFIG is not available</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

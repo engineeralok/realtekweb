@@ -1,135 +1,54 @@
-# RetakeTech API Test Results
+# API Test Results
 
-## Test Summary
-**Date**: October 25, 2025  
-**Status**: ✅ **APIs WORKING**  
-**Base URL**: `https://api.retaketech.com`
+## Current API Status (Updated October 25, 2025)
 
-## Tested Endpoints
+### ✅ Working APIs
 
-### 1. ✅ News API - WORKING
-**Endpoint**: `GET https://api.retaketech.com/news?days=7`  
-**Status**: 200 OK  
-**Response Time**: ~300ms  
-**Required Parameter**: `days` (query parameter)
+#### 1. News API
+- **Endpoint**: `GET https://api.retaketech.com/news/?days=7`
+- **Status**: ✅ Working
+- **Requirements**: `days` parameter must be between 5-31
+- **Response**: Array of news items with `url`, `slug`, `description`, `date`, `previousOrientation`, `currentOrientation`, `hasCoc`, `isPolitical`, `defaultBranch`
 
-**Sample Response**:
-```json
-{
-  "items": [
-    {
-      "url": "https://github.com/travisbrown/cancel-culture",
-      "slug": "travisbrown/cancel-culture",
-      "description": "Tools for fighting abuse on Twitter",
-      "date": "2025-10-22",
-      "currentOrientation": "Political",
-      "isPolitical": true,
-      "hasCoc": true,
-      "defaultBranch": "main"
-    }
-  ]
-}
-```
+#### 2. Repos API (Static)
+- **Endpoint**: `GET https://static.retaketech.com/repos.json`
+- **Status**: ✅ Working
+- **Response**: Object with `political` and `neutral` arrays containing project data
+- **Structure**: Each project has `slug`, `url`, `description`, `date`, `defaultBranchName`, `hasCoc`, `isPolitical`, `stars`
 
-### 2. ❌ Repos API - NOT FOUND
-**Endpoint**: `GET https://api.retaketech.com/repos`  
-**Status**: 404 Not Found  
-**Note**: This endpoint doesn't exist in the current API
+#### 3. Score API
+- **Endpoint**: `GET https://api.retaketech.com/score?slug=owner/repo`
+- **Status**: ✅ Working
+- **Response**: Single project object with scoring data
+- **Example**: `travisbrown/cancel-culture` returns complete project information
 
-### 3. ✅ Score API - WORKING
-**Endpoint**: `GET https://api.retaketech.com/score?slug=travisbrown/cancel-culture`  
-**Status**: 200 OK  
-**Response Time**: ~19 seconds (slow processing)  
-**Required Parameter**: `slug` (query parameter)
+### ❌ Non-Working APIs
 
-**Sample Response**:
-```json
-{
-  "url": "https://github.com/travisbrown/cancel-culture",
-  "slug": "travisbrown/cancel-culture",
-  "description": "Tools for fighting abuse on Twitter",
-  "orientation": "Political",
-  "isPolitical": true,
-  "hasCoc": true,
-  "defaultBranch": "main",
-  "stars": 428
-}
-```
+#### 1. Activism API
+- **Endpoint**: `GET https://api.retaketech.com/activism/github_issue?slug=owner/repo`
+- **Status**: ❌ Returns 404 Not Found
+- **Expected**: Should redirect to GitHub issues page
+- **Current Workaround**: Opens GitHub issues directly in new tab
 
-## Website Configuration Updates
+## Updated Website Implementation
 
-### ✅ Updated Files:
-1. **`js/main.js`** - Changed to HTTPS base URL
-2. **`js/news.js`** - Added `?days=7` parameter and updated field mappings
-3. **`js/war-room.js`** - Added fallback sample data (repos endpoint not available)
-4. **`test-api.html`** - Updated to use HTTPS and correct parameters
-5. **`README.md`** - Updated API documentation with real response formats
+### Changes Made
+1. **API Configuration**: Updated to use correct endpoints and base URLs
+2. **News API**: Changed from `days=1` to `days=7` to meet API requirements
+3. **Repos API**: Updated to use static endpoint and handle new data structure
+4. **Data Mapping**: Updated JavaScript to correctly parse API responses
+5. **Error Handling**: Improved error handling for non-working endpoints
 
-### 🔧 Key Changes Made:
-- **Protocol**: Changed from HTTP to HTTPS
-- **News API**: Added required `days` parameter
-- **Field Mapping**: Updated to match actual API response fields
-- **Error Handling**: Added fallback data for missing repos endpoint
-- **Documentation**: Updated with real API response examples
+### Data Structure Updates
+- **News**: Now uses `previousOrientation` and `currentOrientation` fields
+- **Repos**: Now handles `political` and `neutral` arrays from static API
+- **Project Display**: Updated to use `slug` instead of `name` field
+- **Status Checks**: Updated to use string comparisons (`"true"` vs `true`)
 
-## Working Features
+## Testing
+Use `test-api.html` to test all API endpoints and verify functionality.
 
-### ✅ News Page
-- **API Integration**: ✅ Working
-- **Data Fetching**: ✅ Working with `?days=7` parameter
-- **Field Mapping**: ✅ Updated to use `slug`, `currentOrientation`, `isPolitical`
-- **Date Formatting**: ✅ Working
-- **Error Handling**: ✅ Implemented
-
-### ✅ Score API
-- **Repository Analysis**: ✅ Working
-- **Response Time**: ⚠️ Slow (~19 seconds)
-- **Data Fields**: ✅ Complete repository information
-- **Integration**: ✅ Ready for use
-
-### ⚠️ War Room
-- **Repos Endpoint**: ❌ Not available (404)
-- **Fallback Data**: ✅ Sample data implemented
-- **Table Rendering**: ✅ Working with sample data
-- **Submit Issue**: ✅ GitHub integration working
-
-## Recommendations
-
-### 1. Immediate Actions
-- ✅ **News API**: Fully functional with correct parameters
-- ✅ **Score API**: Working but slow (19s response time)
-- ⚠️ **Repos API**: Need alternative data source or endpoint
-
-### 2. Performance Considerations
-- **Score API**: Consider caching results due to 19-second response time
-- **News API**: Fast response (~300ms) - good for real-time updates
-
-### 3. Production Readiness
-- ✅ **HTTPS**: All APIs use secure connections
-- ✅ **Error Handling**: Implemented for all endpoints
-- ✅ **Fallback Data**: Sample data for missing repos endpoint
-- ✅ **Documentation**: Updated with real API examples
-
-## Test Commands Used
-
-```bash
-# Test News API
-curl -X GET "https://api.retaketech.com/news?days=7" -H "Content-Type: application/json"
-
-# Test Score API  
-curl -X GET "https://api.retaketech.com/score?slug=travisbrown/cancel-culture" -H "Content-Type: application/json"
-
-# Test Repos API (returns 404)
-curl -X GET "https://api.retaketech.com/repos" -H "Content-Type: application/json"
-```
-
-## Conclusion
-
-**✅ APIs are working and integrated!**
-
-The RetakeTech APIs are functional with the following status:
-- **News API**: ✅ Fully working
-- **Score API**: ✅ Working (slow but functional)  
-- **Repos API**: ❌ Not available (using fallback data)
-
-The website is now configured to use the working APIs with proper error handling and fallback mechanisms.
+## Next Steps
+1. Contact API provider about activism endpoint (currently 404)
+2. Consider fallback for activism API (direct GitHub links)
+3. Monitor API stability and update error handling as needed
